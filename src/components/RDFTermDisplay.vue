@@ -7,8 +7,10 @@ defineProps<{
 </script>
 
 <template>
-  <span class="term" v-if="term?.termType === 'NamedNode'"
-    ><a :href="term.value" target="_blank">{{ term.value }}</a></span
+  <span class="term" v-if="term?.termType === 'NamedNode'">
+    <RouterLink :to="{ path: '/term', query: { iri: term.value } }">{{
+      term.value
+    }}</RouterLink> </span
   ><span class="term blanknode" v-else-if="term?.termType === 'BlankNode'">{{ term.value }}</span>
   <span class="term" v-else-if="term?.termType === 'Literal'"
     >{{ term.value }}<span class="lang" v-if="term.language.length > 0">@{{ term.language }}</span
